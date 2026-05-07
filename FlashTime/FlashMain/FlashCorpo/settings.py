@@ -54,12 +54,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "FlashTimes.urls"
+ROOT_URLCONF = "FlashCorpo.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templetes'],
+        "DIRS": [BASE_DIR / 'FlashCorpo' / 'templetes'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "FlashTimes.wsgi.application"
+WSGI_APPLICATION = "FlashCorpo.wsgi.application"
 
 
 # Database

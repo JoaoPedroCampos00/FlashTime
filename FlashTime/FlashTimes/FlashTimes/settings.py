@@ -59,7 +59,7 @@ ROOT_URLCONF = "FlashTimes.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'FlashTimes' / 'templates'],
+        "DIRS": [BASE_DIR / 'templetes'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

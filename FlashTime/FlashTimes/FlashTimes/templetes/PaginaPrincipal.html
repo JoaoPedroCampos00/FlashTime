@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashTime — MVP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: rgba(201, 168, 76, 0.25);
+    --bg-deep: #0A0A0A;
+    --bg-card: #141414;
+    --bg-card2: #1A1A1A;
+    --text-white: #F5F3EE;
+    --text-muted: #888880;
+    --border: rgba(201, 168, 76, 0.18);
+  }
+
+  body {
+    background-color: var(--bg-deep);
+    color: var(--text-white);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 24px 80px;
+    text-align: center;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 88px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: var(--text-white);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero-title .dash {
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 6px;
+    opacity: 0.8;
+  }
+
+  .hero-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 20px auto 16px;
+    opacity: 0.5;
+  }
+
+  .hero-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* ── GRID ── */
+  .features-section {
+    background: #131313;
+    padding: 60px 40px 80px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: #161616;
+    padding: 44px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    border: 0.5px solid rgba(255,255,255,0.04);
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .feature-card:hover {
+    background: #1c1c1c;
+  }
+
+  .icon-ring {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px dashed var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    opacity: 0.75;
+  }
+
+  .icon-ring svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-white);
+    line-height: 1.2;
+  }
+
+  .feature-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* ── BOTTOM ROW (placeholder cards) ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 2px auto 0;
+  }
+
+  .placeholder-card {
+    background: #111;
+    height: 140px;
+    border: 0.5px solid rgba(255,255,255,0.04);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.15);
+  }
+
+  footer span {
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .features-grid, .bottom-row { grid-template-columns: 1fr; }
+    .features-section { padding: 40px 20px 60px; }
+    .hero { padding: 80px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="hero-title">
+    FlashTime <span class="dash"></span>
+  </h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">Summary</p>
+</section>
+
+<!-- FEATURE CARDS -->
+<section class="features-section">
+  <div class="features-grid">
+
+    <!-- Card 1: Consulta de Carros -->
+    <div class="feature-card">
+      <div class="icon-ring" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/></svg>
+      </div>
+      <h2 class="feature-title">Aluguel de camera</h2>
+      <p class="feature-desc">Acesse o banco FlashTime completo com filtros dinâmicos por cilindros, potência e transmissão.</p>
+    </div>
+
+    <!-- Card 2: Filtros Avançados -->
+    <div class="feature-card">
+      <div class="icon-ring" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+      </div>
+      <h2 class="feature-title">Filtros Avançados</h2>
+      <p class="feature-desc">Filtragem em tempo real sem recarregar a página, com suporte a múltiplos parâmetros simultâneos.</p>
+    </div>
+
+    <!-- Card 3: Painel Admin -->
+    <div class="feature-card">
+      <div class="icon-ring" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h2 class="feature-title">Painel Admin</h2>
+      <p class="feature-desc">Interface administrativa Django para gerenciar registros, superusuários e permissões de acesso.</p>
+    </div>
+
+    <!-- Card 4: Deploy Online -->
+    <div class="feature-card">
+      <div class="icon-ring" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h2 class="feature-title">Deploy Online</h2>
+      <p class="feature-desc">Hospedagem gratuita via PythonAnywhere — site sempre no ar sem precisar manter o Codespace aberto.</p>
+    </div>
+
+    <!-- Card 5: Banco de Dados -->
+    <div class="feature-card">
+      <div class="icon-ring" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+      </div>
+      <h2 class="feature-title">Banco MTCars</h2>
+      <p class="feature-desc">Dados de 32 modelos de automóveis com 11 variáveis: mpg, cyl, hp, gear e mais.</p>
+    </div>
+
+    <!-- Card 6: Configurações -->
+    <div class="feature-card">
+      <div class="icon-ring" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      </div>
+      <h2 class="feature-title">Acesso Público</h2>
+      <p class="feature-desc">CORS configurado para acesso universal, com CSRF seguro e suporte a domínios HTTPS e HTTP.</p>
+    </div>
+
+  </div>
+
+  <!-- Linha de baixo (placeholders como na imagem original) -->
+  <div class="bottom-row">
+    <div class="placeholder-card"></div>
+    <div class="placeholder-card"></div>
+    <div class="placeholder-card"></div>
+  </div>
+</section>
+
+<footer>
+  <span>FlashTime</span> &nbsp;·&nbsp; MVP Overview
+</footer>
+
+</body>
+</html>

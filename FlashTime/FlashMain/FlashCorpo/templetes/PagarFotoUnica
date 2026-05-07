@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashTime — Pagar por Foto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --gold: #C9A84C; --bg-deep: #0A0A0A; --bg-section: #111111; --bg-card: #161616; --text-white: #F5F3EE; --text-muted: #888880; }
+  body { background: var(--bg-deep); color: var(--text-white); font-family: 'Jost', sans-serif; font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 48px; border-bottom: 0.5px solid rgba(201,168,76,0.15); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--text-white); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-back { font-size: 11px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
+  .nav-back:hover { opacity: 0.6; }
+  .nav-back::before { content: '←'; font-size: 14px; }
+  .hero { padding: 80px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-tag { font-size: 10px; letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6vw, 76px); font-weight: 300; line-height: 1.05; color: var(--text-white); margin-bottom: 20px; }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.5; margin: 0 auto 20px; }
+  .hero-sub { font-size: 13px; color: var(--text-muted); max-width: 520px; line-height: 1.8; }
+  footer { text-align: center; padding: 40px 24px; font-size: 11px; letter-spacing: 0.2em; color: rgba(255,255,255,0.15); }
+  footer span { color: var(--gold); opacity: 0.5; }
+  @media (max-width: 768px) { nav { padding: 20px 24px; } .hero { padding: 60px 24px 40px; } }
+
+  .content-section { padding: 0 48px 80px; background: var(--bg-section); }
+  .desc-block { max-width: 1100px; margin: 0 auto 40px; padding-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .desc-text { }
+  .desc-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: var(--text-white); margin-bottom: 20px; line-height: 1.2; }
+  .desc-text p { font-size: 13px; color: var(--text-muted); line-height: 1.9; margin-bottom: 16px; }
+  .desc-visual { background: var(--bg-card); border: 0.5px solid rgba(201,168,76,0.12); padding: 32px; }
+  .price-tag { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 0.5px solid rgba(255,255,255,0.06); }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--gold); line-height: 1; }
+  .price-label { font-size: 11px; color: var(--text-muted); letter-spacing: 0.2em; text-transform: uppercase; }
+  .price-detail { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  .features-title { font-size: 10px; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; margin: 28px 0 16px; }
+  .features-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .features-list li { font-size: 13px; color: var(--text-muted); padding: 14px 0; border-bottom: 0.5px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; }
+  .features-list li::before { content: '—'; color: var(--gold); opacity: 0.6; flex-shrink: 0; margin-top: 1px; }
+  .flow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; max-width: 1100px; margin: 40px auto 0; }
+  .flow-step { background: var(--bg-card); padding: 32px 24px; border: 0.5px solid rgba(255,255,255,0.04); position: relative; }
+  .flow-num { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 300; color: var(--gold); opacity: 0.2; line-height: 1; margin-bottom: 16px; }
+  .flow-step-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--text-white); margin-bottom: 10px; }
+  .flow-step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  @media (max-width: 768px) { .content-section { padding: 0 20px 60px; } .desc-block { grid-template-columns: 1fr; gap: 30px; } .flow-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-back">Voltar</a>
+  <a href="/" class="nav-logo">FlashTime</a>
+  <div style="width:80px"></div>
+</nav>
+<section class="hero">
+  <p class="hero-tag">Modalidade</p>
+  <h1 class="hero-title">Pagar por<br><em>Foto</em></h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">Pague apenas pelas fotos que realmente importam. Sem desperdício, sem comprometimento — só o que você escolher guardar.</p>
+</section>
+<section class="content-section">
+  <div class="desc-block">
+    <div class="desc-text">
+      <h2>Sua memória,<br>seu preço.</h2>
+      <p>Com o modelo Pagar por Foto, você tem total liberdade para revisar todas as imagens capturadas durante o evento antes de decidir o que vale a pena guardar. Nada é cobrado automaticamente.</p>
+      <p>Após devolver a câmera, suas fotos ficam disponíveis em uma galeria online privada. Você navega, seleciona as favoritas e só então efetua o pagamento — simples, justo e transparente.</p>
+      <p>Ideal para quem quer experimentar sem compromisso ou para eventos menores onde a quantidade de registros é mais seletiva.</p>
+    </div>
+    <div class="desc-visual">
+      <div class="price-tag">
+        <span class="price-amount">R$9</span>
+        <span class="price-label">por foto selecionada</span>
+      </div>
+      <p class="price-detail">Sem mensalidade. Sem taxa mínima. Pague somente o que escolher salvar. Fotos entregues em alta resolução por email em até 24h após a seleção.</p>
+      <p class="features-title">Gerenciamento de Fotos</p>
+      <ul class="features-list">
+        <li>Upload das fotos ao devolver a câmera</li>
+        <li>Galeria online para visualização completa</li>
+        <li>Seleção de fotos favoritas para pagamento</li>
+        <li>Envio das fotos selecionadas por email</li>
+        <li>Preview das fotos antes da compra</li>
+      </ul>
+    </div>
+  </div>
+  <div class="flow-grid">
+    <div class="flow-step">
+      <p class="flow-num">01</p>
+      <h3 class="flow-step-title">Alugue a câmera</h3>
+      <p class="flow-step-desc">Escolha o modelo ideal para seu evento e realize o aluguel pelo site ou via Instagram.</p>
+    </div>
+    <div class="flow-step">
+      <p class="flow-num">02</p>
+      <h3 class="flow-step-title">Fotografe</h3>
+      <p class="flow-step-desc">Capture todos os momentos sem preocupação. Clique à vontade — você decide depois o que fica.</p>
+    </div>
+    <div class="flow-step">
+      <p class="flow-num">03</p>
+      <h3 class="flow-step-title">Revise na galeria</h3>
+      <p class="flow-step-desc">Após a devolução, acesse sua galeria online e selecione as fotos que deseja guardar.</p>
+    </div>
+    <div class="flow-step">
+      <p class="flow-num">04</p>
+      <h3 class="flow-step-title">Pague e receba</h3>
+      <p class="flow-step-desc">Pague apenas pelas fotos escolhidas e receba tudo em alta resolução diretamente no seu email.</p>
+    </div>
+  </div>
+</section>
+<footer><span>FlashTime</span> &nbsp;·&nbsp; Pagar por Foto</footer>
+</body>
+</html>

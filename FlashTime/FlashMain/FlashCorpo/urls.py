@@ -22,4 +22,10 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.pagina_principal, name='pagina_principal'),
+    path('Aluguel.html', views.aluguel_page, name='aluguel_page'),
+    path('PagarFotoUnica', views.pagar_foto_unica, name='pagar_foto_unica'),
+    path('PagarFotoGrupo', views.pagar_foto_grupo, name='pagar_foto_grupo'),
+    path('Contato.html', views.contato_page, name='contato_page'),
+    path('Email.html', views.email_page, name='email_page'),
+    path('politica.html', views.politica_page, name='politica_page'),
 ]

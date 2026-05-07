@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashTime — Conecte seu Email</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --gold: #C9A84C; --bg-deep: #0A0A0A; --bg-section: #111111; --bg-card: #161616; --text-white: #F5F3EE; --text-muted: #888880; }
+  body { background: var(--bg-deep); color: var(--text-white); font-family: 'Jost', sans-serif; font-weight: 300; min-height: 100vh; overflow-x: hidden; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 48px; border-bottom: 0.5px solid rgba(201,168,76,0.15); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--text-white); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-back { font-size: 11px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: opacity 0.2s; }
+  .nav-back:hover { opacity: 0.6; }
+  .nav-back::before { content: '←'; font-size: 14px; }
+  .hero { padding: 80px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-tag { font-size: 10px; letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6vw, 76px); font-weight: 300; line-height: 1.05; color: var(--text-white); margin-bottom: 20px; }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.5; margin: 0 auto 20px; }
+  .hero-sub { font-size: 13px; color: var(--text-muted); max-width: 520px; line-height: 1.8; }
+  footer { text-align: center; padding: 40px 24px; font-size: 11px; letter-spacing: 0.2em; color: rgba(255,255,255,0.15); }
+  footer span { color: var(--gold); opacity: 0.5; }
+  @media (max-width: 768px) { nav { padding: 20px 24px; } .hero { padding: 60px 24px 40px; } }
+
+  .content-section { padding: 0 48px 80px; background: var(--bg-section); }
+  .email-layout { max-width: 1100px; margin: 0 auto; padding-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .email-desc h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: var(--text-white); margin-bottom: 20px; line-height: 1.2; }
+  .email-desc p { font-size: 13px; color: var(--text-muted); line-height: 1.9; margin-bottom: 16px; }
+  .email-form-card { background: var(--bg-card); border: 0.5px solid rgba(201,168,76,0.12); padding: 40px 36px; }
+  .form-label { font-size: 10px; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 10px; }
+  .form-input { width: 100%; background: #111; border: 0.5px solid rgba(255,255,255,0.08); color: var(--text-white); font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 300; padding: 14px 16px; outline: none; transition: border-color 0.2s; margin-bottom: 20px; }
+  .form-input:focus { border-color: rgba(201,168,76,0.4); }
+  .form-input::placeholder { color: var(--text-muted); }
+  .form-checkbox-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 24px; }
+  .form-checkbox { width: 14px; height: 14px; border: 0.5px solid rgba(255,255,255,0.2); background: transparent; cursor: pointer; flex-shrink: 0; margin-top: 2px; appearance: none; -webkit-appearance: none; }
+  .form-checkbox:checked { background: var(--gold); border-color: var(--gold); }
+  .form-checkbox-label { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .btn-submit { width: 100%; padding: 14px; border: 1px solid rgba(201,168,76,0.4); background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; cursor: pointer; transition: background 0.25s, color 0.25s; }
+  .btn-submit:hover { background: var(--gold); color: #0A0A0A; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 40px auto 0; }
+  .benefit-card { background: var(--bg-card); padding: 32px 24px; border: 0.5px solid rgba(255,255,255,0.04); }
+  .benefit-icon { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); opacity: 0.4; margin-bottom: 14px; }
+  .benefit-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--text-white); margin-bottom: 10px; }
+  .benefit-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  @media (max-width: 768px) { .content-section { padding: 0 20px 60px; } .email-layout { grid-template-columns: 1fr; gap: 30px; } .benefits-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="nav-back">Voltar</a>
+  <a href="/" class="nav-logo">FlashTime</a>
+  <div style="width:80px"></div>
+</nav>
+<section class="hero">
+  <p class="hero-tag">Conectar</p>
+  <h1 class="hero-title">Conecte seu<br><em>Email</em></h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">Receba suas fotos instantaneamente, fique por dentro dos próximos eventos que a FlashTime vai cobrir e nunca perca um momento especial.</p>
+</section>
+<section class="content-section">
+  <div class="email-layout">
+    <div class="email-desc">
+      <h2>Sua caixa de entrada,<br>cheia de memórias.</h2>
+      <p>Ao conectar seu email à FlashTime, você garante que todas as suas fotos cheguem diretamente a você — sem precisar lembrar de acessar nenhuma plataforma.</p>
+      <p>Assim que o upload das fotos for concluído após o evento, você recebe uma notificação com o link para a sua galeria online e, caso tenha escolhido um pacote ou selecionado fotos avulsas, os arquivos em alta resolução chegam automaticamente na sua caixa de entrada.</p>
+      <p>Além disso, você recebe com antecedência a agenda de eventos que a FlashTime vai cobrir — festas, formaturas, casamentos e shows — para que possa reservar com tempo e garantir o melhor modelo de câmera.</p>
+    </div>
+    <div class="email-form-card">
+      <label class="form-label">Seu nome</label>
+      <input type="text" class="form-input" placeholder="Como podemos te chamar?">
+      <label class="form-label">Seu email</label>
+      <input type="email" class="form-input" placeholder="email@exemplo.com">
+      <div class="form-checkbox-row">
+        <input type="checkbox" class="form-checkbox" id="chk1">
+        <label for="chk1" class="form-checkbox-label">Quero receber fotos dos meus eventos diretamente no email</label>
+      </div>
+      <div class="form-checkbox-row">
+        <input type="checkbox" class="form-checkbox" id="chk2">
+        <label for="chk2" class="form-checkbox-label">Quero ser avisado sobre próximos eventos e novidades da FlashTime</label>
+      </div>
+      <button class="btn-submit">Conectar Email</button>
+    </div>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <p class="benefit-icon">✦</p>
+      <h3 class="benefit-title">Entrega instantânea</h3>
+      <p class="benefit-desc">Suas fotos chegam automaticamente no email assim que o processamento é concluído, sem espera e sem login.</p>
+    </div>
+    <div class="benefit-card">
+      <p class="benefit-icon">◈</p>
+      <h3 class="benefit-title">Agenda de eventos</h3>
+      <p class="benefit-desc">Receba com antecedência os próximos eventos que a FlashTime vai cobrir e garanta sua reserva antes de todo mundo.</p>
+    </div>
+    <div class="benefit-card">
+      <p class="benefit-icon">◎</p>
+      <h3 class="benefit-title">Alta resolução</h3>
+      <p class="benefit-desc">Todos os arquivos são enviados em resolução máxima — prontos para imprimir, enquadrar ou compartilhar onde quiser.</p>
+    </div>
+  </div>
+</section>
+<footer><span>FlashTime</span> &nbsp;·&nbsp; Conectar Email</footer>
+</body>
+</html>
